@@ -5,10 +5,15 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { funcGETScorebyUserid } from '../../redux/actions/gameAction';
 
 const Achievements = ({ navigation }) => {
 
+    const dispatch = useDispatch()
     let getUserState = useSelector(({ userState }) => userState.infoUser);
+    useEffect(() => {
+        dispatch(funcGETScorebyUserid(getUserState.token, getUserState.details.id));
+      }, []);
 
     return (
         <LinearGradient colors={['#b81592', '#23044e', '#000036']} style={{ height: '100%' }} >

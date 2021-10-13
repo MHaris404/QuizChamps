@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { funcPOSTSCORECAT } from '../../redux/actions/selectionAction';
+import { funcPostScoreCat } from '../../redux/actions/selectionAction';
 
 const Instructions = (({ navigation }) => {
 
@@ -49,8 +49,7 @@ const Instructions = (({ navigation }) => {
             setSel4(false)
         } else if (count == getQuestions.length - 1) {
             // // setCount(0)
-            // ToastAndroid.show("" +  selectedCatInfo.id, selOpt, ToastAndroid.LONG);
-            dispatch(funcPOSTSCORECAT(authToken, getUserState.details.id, selectedCatInfo.id, selOpt))
+            dispatch(funcPostScoreCat(authToken, getUserState.details.id, selectedCatInfo.id, selOpt, selectedCatInfo.categoryName))
             navigation.navigate("Achievements")
         }
     }

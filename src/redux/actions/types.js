@@ -7,6 +7,7 @@ export const LOG_OUT_USER = 'LOG_OUT_USER';
 export const GET_CATEGORY = "GET_CATEGORY";
 export const GET_QUESTION = "GET_QUESTION";
 export const GET_OPTION = "GET_OPTION";
+export const GET_SCORE_USER = "GET_SCORE_USER";
 
 export const QUES_ID = "QUES_ID";
 export const CAT_ID = "CAT_ID";

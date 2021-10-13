@@ -32,10 +32,10 @@ const funcOPT = (arr) => {
     }
 }
 
-const funcPOSTSCORECAT = (Authtoken, userid, catId, score) => {
+const funcPostScoreCat = (Authtoken, userid, catId, score, catName) => {
     return async (dispatch) => {
 
-        const api = `http://192.168.1.103:5000/endpoint/v1/add/score?userCategoryScore=${score}&categoryid=${catId}&usersid=${userid}`;
+        const api = `http://${IP}:5000/endpoint/v1/add/score?userCategoryScore=${score}&categoryid=${catId}&usersid=${userid}&categoryName=${catName}`;
 
         try {
             fetch(api, {
@@ -69,5 +69,5 @@ export {
     funcCATID,
     funcQUESID,
     funcOPT,
-    funcPOSTSCORECAT
+    funcPostScoreCat
 };
