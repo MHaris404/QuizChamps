@@ -13,7 +13,10 @@ const Achievements = ({ navigation }) => {
     let getUserState = useSelector(({ userState }) => userState.infoUser);
     useEffect(() => {
         dispatch(funcGETScorebyUserid(getUserState.token, getUserState.details.id));
-      }, []);
+    }, []);
+
+    let achievedScoreInfo = useSelector(({ achieveState }) => { return achieveState.infoAchieve });
+    console.log(achievedScoreInfo)
 
     return (
         <LinearGradient colors={['#b81592', '#23044e', '#000036']} style={{ height: '100%' }} >
@@ -72,7 +75,7 @@ const Achievements = ({ navigation }) => {
 
                             <View style={{ width: '80%' }}>
 
-                                <View style={styles.profileRow}>
+                                {/* <View style={styles.profileRow}>
                                     <View style={{ width: '45%' }}>
                                         <Text style={styles.profileRowCategory}>Science</Text>
                                     </View>
@@ -82,9 +85,35 @@ const Achievements = ({ navigation }) => {
                                     <View style={{ width: '10%' }}>
                                         <Image style={styles.profileRowImage} source={require('../../assets/medalGold.png')} />
                                     </View>
-                                </View>
+                                </View> */}
 
-                                <View style={styles.profileRow}>
+                                {
+                                    (achievedScoreInfo)
+                                        ?
+                                        (
+                                            achievedScoreInfo.map((item, index) => {
+                                                return (
+
+                                                    <View style={styles.profileRow} key={index} >
+                                                        <View style={{ width: '45%' }}>
+                                                            <Text style={styles.profileRowCategory}>{item.categoryName}</Text>
+                                                        </View>
+                                                        <View style={{ width: '45%' }}>
+                                                            <Text style={styles.profileRowScore}>{item.userCategoryScore}</Text>
+                                                        </View>
+                                                        <View style={{ width: '10%' }}>
+                                                            <Image style={styles.profileRowImage} source={require('../../assets/medalGold.png')} />
+                                                        </View>
+                                                    </View>
+
+                                                );
+                                            })
+                                        )
+                                        :
+                                        (null)
+                                }
+
+                                {/* <View style={styles.profileRow}>
                                     <View style={{ width: '45%' }}>
                                         <Text style={styles.profileRowCategory}>Geography</Text>
                                     </View>
@@ -106,7 +135,7 @@ const Achievements = ({ navigation }) => {
                                     <View style={{ width: '10%' }}>
                                         <Image style={styles.profileRowImage} source={require('../../assets/medalSilver.png')} />
                                     </View>
-                                </View>
+                                </View> */}
 
                             </View>
 
