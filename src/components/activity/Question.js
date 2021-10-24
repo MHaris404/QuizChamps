@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { funcPostScoreCat } from '../../redux/actions/selectionAction';
 
-const Instructions = (({ navigation }) => {
+const Question = React.memo(({ navigation }) => {
 
     const dispatch = useDispatch()
 
@@ -48,9 +48,17 @@ const Instructions = (({ navigation }) => {
             setSel3(false)
             setSel4(false)
         } else if (count == getQuestions.length - 1) {
-            // // setCount(0)
-            dispatch(funcPostScoreCat(authToken, getUserState.details.id, selectedCatInfo.id, selOpt, selectedCatInfo.categoryName))
+
+            setCount(0)
+            setcurQ({ data: getQuestions[0] })
+            setDis(true)
+            setSel1(false)
+            setSel2(false)
+            setSel3(false)
+            setSel4(false)
+
             navigation.navigate("Achievements")
+            dispatch(funcPostScoreCat(authToken, getUserState.details.id, selectedCatInfo.id, selOpt, selectedCatInfo.categoryName))
         }
     }
 
@@ -163,11 +171,9 @@ const Instructions = (({ navigation }) => {
                                 setSel4(false)
                                 setDis(false)
                                 if (curQ.data.option1 == curQ.data.correctOption) {
-                                    // setSelOpt(selOpt.splice(count, 1, true))
                                     setSelOpt(selOpt + selectedCatInfo.categoryScore)
                                 } else {
                                     setSelOpt(selOpt - selectedCatInfo.categoryScore)
-                                    // setSelOpt(selOpt.splice(count, 1, false))
                                 }
                             }}>
                                 <ImageBackground style={styles.optionItem} source={require('../../assets/optionBgValue.png')} >
@@ -194,11 +200,8 @@ const Instructions = (({ navigation }) => {
                                 setSel4(false)
                                 setDis(false)
                                 if (curQ.data.option2 == curQ.data.correctOption) {
-                                    // setSelOpt(selOpt.splice(count, 1, true))
-
                                     setSelOpt(selOpt + selectedCatInfo.categoryScore)
                                 } else {
-                                    // setSelOpt(selOpt.splice(count, 1, false))
                                     setSelOpt(selOpt - selectedCatInfo.categoryScore)
                                 }
                             }}>
@@ -226,10 +229,8 @@ const Instructions = (({ navigation }) => {
                                 setSel4(false)
                                 setDis(false)
                                 if (curQ.data.option3 == curQ.data.correctOption) {
-                                    // setSelOpt(selOpt.splice(count, 1, true))
                                     setSelOpt(selOpt + selectedCatInfo.categoryScore)
                                 } else {
-                                    // setSelOpt(selOpt.splice(count, 1, false))
                                     setSelOpt(selOpt - selectedCatInfo.categoryScore)
                                 }
                             }}>
@@ -257,10 +258,8 @@ const Instructions = (({ navigation }) => {
                                 setSel4(true)
                                 setDis(false)
                                 if (curQ.data.option4 == curQ.data.correctOption) {
-                                    // setSelOpt(selOpt.splice(count, 1, true))
                                     setSelOpt(selOpt + selectedCatInfo.categoryScore)
                                 } else {
-                                    // setSelOpt(selOpt.splice(count, 1, false))
                                     setSelOpt(selOpt - selectedCatInfo.categoryScore)
                                 }
                             }}>
@@ -465,4 +464,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Instructions;
+export default Question;

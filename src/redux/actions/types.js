@@ -1,5 +1,5 @@
 
-export const IP = "192.168.1.103"
+export const IP = "192.168.1.102"
 
 export const LOG_IN_USER = 'LOG_IN_USER';
 export const LOG_OUT_USER = 'LOG_OUT_USER';
