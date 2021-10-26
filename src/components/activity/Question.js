@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Image, ImageBackground, View, StyleSheet, Text, TouchableOpacity, ScrollView, TouchableOpacityBase, ToastAndroid } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -10,6 +10,20 @@ import { funcPostScoreCat } from '../../redux/actions/selectionAction';
 const Question = React.memo(({ navigation }) => {
 
     const dispatch = useDispatch()
+    const intervalRef = useRef(null)
+
+    useEffect(() => {
+        setCount(0)
+        setcurQ({ data: getQuestions[0] })
+        setDis(true)
+        setSel1(false)
+        setSel2(false)
+        setSel3(false)
+        setSel4(false)
+
+        clearInterval(intervalRef.current)
+        startTimer(questionTime)
+    }, [])
 
     const [minutes, setMinutes] = useState();
     const [seconds, setSeconds] = useState();
@@ -33,6 +47,66 @@ const Question = React.memo(({ navigation }) => {
     let getQuesState = useSelector(({ quesState }) => { return quesState.infoQues })
     let getQuestions = getQuesState.result
 
+    // timer
+    let timeGet = selectedCatInfo.categoryTime.split(":")
+    let totalTime = parseInt(timeGet[0]) * 60 + parseInt(timeGet[1])
+    let questionTime = totalTime / getQuesState.result.length; //in seconds
+
+    const stopTime = () => clearInterval(intervalRef.current)
+
+    const startTimer = (duration) => {
+        var timer = duration,
+            minutes,
+            seconds;
+        intervalRef.current = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            if (timer-- === 0) {
+                clearInterval(intervalRef.current)
+            } else if (minutes < 1 && seconds < 1) {
+                if (count < getQuesState.result.length - 1) {
+                    setCount(++count)
+                    setcurQ({ data: getQuestions[count] })
+                    setDis(true)
+                    setSel1(false)
+                    setSel2(false)
+                    setSel3(false)
+                    setSel4(false)
+
+                    clearInterval(intervalRef.current)
+                    // stopTime()
+                    startTimer(questionTime)
+
+                } else if (count == getQuestions.length - 1) {
+
+                    setCount(0)
+                    setcurQ({ data: getQuestions[0] })
+                    setDis(true)
+                    setSel1(false)
+                    setSel2(false)
+                    setSel3(false)
+                    setSel4(false)
+
+                    clearInterval(intervalRef.current)
+                    // stopTime()
+
+                    dispatch(funcPostScoreCat(authToken, getUserState.details.id, selectedCatInfo.id, selOpt, selectedCatInfo.categoryName))
+                    navigation.navigate("Achievements")
+                }
+            }
+
+
+            setMinutes(minutes)
+            setSeconds(seconds)
+        }, 1000);
+
+    };
+
+
     let [count, setCount] = useState(0)
     let [curQ, setcurQ] = useState({
         data: getQuestions[0]
@@ -47,6 +121,10 @@ const Question = React.memo(({ navigation }) => {
             setSel2(false)
             setSel3(false)
             setSel4(false)
+
+            clearInterval(intervalRef.current)
+            startTimer(questionTime)
+
         } else if (count == getQuestions.length - 1) {
 
             setCount(0)
@@ -57,43 +135,12 @@ const Question = React.memo(({ navigation }) => {
             setSel3(false)
             setSel4(false)
 
-            navigation.navigate("Achievements")
+            clearInterval(intervalRef.current)
+
             dispatch(funcPostScoreCat(authToken, getUserState.details.id, selectedCatInfo.id, selOpt, selectedCatInfo.categoryName))
+            navigation.navigate("Achievements")
         }
     }
-
-    // timer
-    // let time = selectedCatInfo.categoryTime.split(":")
-    // let totalTime = parseInt(time[0]) * 60 + parseInt(time[1])
-    // let questionTime = totalTime / getQuesState.result.length; //in seconds
-
-    // if (questionTime >= 60) {
-    //     let finalTime = Math.floor(questionTime / 60) + ":" + (questionTime % 60 ? questionTime % 60 : '00')
-    //     setMinutes(finalTime.split(":")[0])
-    //     setSeconds(finalTime.split(":")[1])
-    // } else {
-    //     setMinutes(0)
-    //     setSeconds(questionTime)
-    // }
-
-    // const timerFunc = () => {
-    //     let myInterval = setInterval(() => {
-    //         if (seconds > 0) {
-    //             setSeconds(seconds - 1);
-    //         }
-    //         if (seconds === 0) {
-    //             if (minutes === 0) {
-    //                 clearInterval(myInterval)
-    //             } else {
-    //                 setMinutes(minutes - 1);
-    //                 setSeconds(59);
-    //             }
-    //         }
-    //     }, 1000)
-    //     return () => {
-    //         clearInterval(myInterval);
-    //     };
-    // }
 
     return (
 
@@ -111,15 +158,15 @@ const Question = React.memo(({ navigation }) => {
                                 <ImageBackground style={styles.toolbarTimerBg} source={require('../../assets/timerBg.png')} >
                                     <Icon style={styles.toolbarTimerItem1} name="clock" size={16} color="#fff" />
                                     {
-                                        // minutes < 1 & seconds < 10
-                                        //     ?
-                                        //     <Text style={styles.toolbarTimerItem2Warning}>
-                                        //         {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                                        //     </Text>
-                                        //     :
-                                        //     <Text style={styles.toolbarTimerItem2}>
-                                        //         {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                                        //     </Text>
+                                        minutes < 1 && seconds < 10
+                                            ?
+                                            <Text style={styles.toolbarTimerItem2Warning}>
+                                                {minutes}:{seconds}
+                                            </Text>
+                                            :
+                                            <Text style={styles.toolbarTimerItem2}>
+                                                {minutes}:{seconds}
+                                            </Text>
                                     }
                                 </ImageBackground>
                             </View>
@@ -333,13 +380,13 @@ const styles = StyleSheet.create({
         margin: 5
     },
     toolbarTimerItem2: {
-        fontSize: 13,
+        fontSize: 11,
         color: '#fff',
         includeFontPadding: false,
         fontFamily: 'Slackey-Regular',
     },
     toolbarTimerItem2Warning: {
-        fontSize: 13,
+        fontSize: 11,
         color: '#ffc415',
         includeFontPadding: false,
         fontFamily: 'Slackey-Regular',

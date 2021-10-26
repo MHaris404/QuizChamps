@@ -7,11 +7,12 @@ import catReducer from "./catReducer";
 import quesReducer from './quesReducer'
 import selecttionReducer from "./selecttionReducer";
 import achieveReducer from "./achieveReducer";
+import topScoreReducer from "./topScoreReducer";
 
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['userState', 'catState', 'quesState', 'selectState', 'achieveReducer']
+    whitelist: ['userState', 'catState', 'quesState', 'selectState', 'achieveReducer', 'scoreState']
 }
 
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     catState: catReducer,
     quesState: quesReducer,
     selectState: selecttionReducer,
-    achieveState : achieveReducer
+    achieveState: achieveReducer,
+    scoreState: topScoreReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
