@@ -50,8 +50,7 @@ const Question = React.memo(({ navigation }) => {
     // timer
     let timeGet = selectedCatInfo.categoryTime.split(":")
     let totalTime = parseInt(timeGet[0]) * 60 + parseInt(timeGet[1])
-    let questionTime = 2
-    //totalTime / getQuesState.result.length; //in seconds
+    let questionTime = totalTime / getQuesState.result.length; //in seconds
 
     const stopTime = () => clearInterval(intervalRef.current)
 
