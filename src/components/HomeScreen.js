@@ -63,7 +63,7 @@ const HomeScreen = ({ navigation }) => {
 
             <ScrollView showsVerticalScrollIndicator={false}>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
+              <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')}>
                 <View style={styles.item}>
                   <View style={{ flex: 0.2 }}>
                     <Icon size={26} name="home" color="#1d6eff" />
@@ -74,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
                 </View>
               </TouchableOpacity >
 
-              <TouchableOpacity onPress={() => navigation.navigate('TopScorers')}>
+              <TouchableOpacity onPress={() =>  props.navigation.navigate('TopScorers')}>
                 <View style={styles.item}>
                   <View style={{ flex: 0.2 }}>
                     <Icon size={26} name="medal" color="#1d6eff" />
@@ -85,7 +85,7 @@ const HomeScreen = ({ navigation }) => {
                 </View>
               </TouchableOpacity >
 
-              <TouchableOpacity onPress={() => navigation.navigate('Achievements')}>
+              <TouchableOpacity onPress={() =>  props.navigation.navigate('Achievements')}>
                 <View style={styles.item}>
                   <View style={{ flex: 0.2 }}>
                     <Icon size={26} name="trophy" color="#1d6eff" />
@@ -96,7 +96,7 @@ const HomeScreen = ({ navigation }) => {
                 </View>
               </TouchableOpacity >
 
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <TouchableOpacity onPress={() =>  props.navigation.navigate('Profile')}>
                 <View style={styles.item}>
                   <View style={{ flex: 0.2 }}>
                     <Icon size={26} name="user-tie" color="#1d6eff" />

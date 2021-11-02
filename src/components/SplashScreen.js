@@ -8,9 +8,11 @@ let deviceHeight = Dimensions.get('window').height
 
 const SplashScreen = ({ navigation }) => {
 
-  useEffect(() => {
-     navigation.navigate("Login")
-  }, []);
+  // useEffect(() => {
+  setTimeout(() => {
+    navigation.navigate("Login")
+  }, 2000)
+  // }, []);
 
   return (
     <LinearGradient colors={['#b81592', '#23044e', '#000036']} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
