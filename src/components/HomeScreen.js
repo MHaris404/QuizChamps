@@ -3,10 +3,6 @@ import { Dimensions, ScrollView } from 'react-native';
 import { Button, SafeAreaView, ImageBackground, View, Image, Text, TextInput, StyleSheet, TouchableOpacity, ToastAndroid } from 'react-native';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import {
-  DrawerContentScrollView,
-} from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -27,11 +23,9 @@ const HomeScreen = ({ navigation }) => {
 
   const { width, height } = Dimensions.get('window');
   const Drawer = createDrawerNavigator();
-  const Stack = createStackNavigator();
 
   function getAPI() {
     dispatch(LogoutUser())
-    // navigation.navigate("Login")
   }
 
   function DrawerUI(props) {
@@ -131,8 +125,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <Drawer.Navigator drawerContent={(props) => <DrawerUI {...props} />} initialRouteName="Dashboard" >
-      <Drawer.Screen name="Dashboard" component={HomeScreenDashboard} />
-      <Stack.Screen name="Instructions" component={Instructions} />
+      <Drawer.Screen name="Dashboard" component={HomeScreenDashboard} navigation={navigation} />
       <Drawer.Screen name="Question" component={Question} />
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="TopScorers" component={TopScorers} />

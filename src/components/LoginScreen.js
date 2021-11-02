@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation }) => {
     }
    
     function getAPI() {
-        // setModalVisible(!modalVisible)
+        setModalVisible(!modalVisible)
         dispatch(LoginUser(state))
     }
 

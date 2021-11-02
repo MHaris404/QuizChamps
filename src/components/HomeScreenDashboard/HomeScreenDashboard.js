@@ -149,7 +149,6 @@ const HomeScreenDashboard = ({ navigation }) => {
 
         </ScrollView>
 
-
       </View>
 
     </NativeBaseProvider>

@@ -4,6 +4,8 @@ import { ScrollView, Image, View, Text, StyleSheet, TouchableOpacity, ToastAndro
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
+import { IP } from '../redux/actions/types'
+
 import {
   FormControl,
   Input,
@@ -302,7 +304,7 @@ const SignupScreen = ({ navigation }) => {
   async function getAPI() {
 
     setModalVisible(!modalVisible)
-    let api = "http://10.1.101.206:5000/endpoint/v1/signup";
+    let api = `http://${IP}:5000/endpoint/v1/signup`;
     try {
       fetch(api, {
         method: 'POST',

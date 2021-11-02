@@ -115,7 +115,6 @@ const TopScorers = ({ navigation }) => {
                                 }
 
 
-
                             </View>
 
                         </ImageBackground>
