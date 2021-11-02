@@ -6,6 +6,8 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { funcGETScorebyUserid } from '../../redux/actions/gameAction';
+import Loader from '../Loader';
+
 
 const Achievements = ({ navigation }) => {
 
@@ -110,7 +112,8 @@ const Achievements = ({ navigation }) => {
                                             })
                                         )
                                         :
-                                        (null)
+                                        // (null)
+                                        <Loader loading={true} />
                                 }
 
                                 {/* <View style={styles.profileRow}>

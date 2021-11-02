@@ -8,6 +8,7 @@ import quesReducer from './quesReducer'
 import selecttionReducer from "./selecttionReducer";
 import achieveReducer from "./achieveReducer";
 import topScoreReducer from "./topScoreReducer";
+import loadingReducer from "./loadingReducer";
 
 const persistConfig = {
     key: 'root',
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     quesState: quesReducer,
     selectState: selecttionReducer,
     achieveState: achieveReducer,
-    scoreState: topScoreReducer
+    scoreState: topScoreReducer,
+    loadState: loadingReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

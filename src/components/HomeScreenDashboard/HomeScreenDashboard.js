@@ -13,6 +13,8 @@ import { funcCATID } from "../../redux/actions/selectionAction";
 
 import { funcGETQues } from '../../redux/actions/gameAction'
 
+import Loader from "../Loader";
+
 const HomeScreenDashboard = ({ navigation }) => {
 
   const dispatch = useDispatch();
@@ -112,7 +114,7 @@ const HomeScreenDashboard = ({ navigation }) => {
                                 <TouchableOpacity onPress={() => {
                                   setModalVisible(true),
                                     dispatch(funcCATID(item))
-                                    dispatch(funcGETQues(authToken, item.id));
+                                  dispatch(funcGETQues(authToken, item.id));
                                 }}
                                   style={{
                                     width: 160,
@@ -131,7 +133,8 @@ const HomeScreenDashboard = ({ navigation }) => {
                           })
                         )
                         :
-                        (null)
+                        // (null)
+                        <Loader loading={true} />
                     }
 
                   </View>

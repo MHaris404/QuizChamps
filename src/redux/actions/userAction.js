@@ -77,6 +77,7 @@ const LogoutUser = () => {
             } else {
                 
                 ToastAndroid.show("Something went wrong : " + responseJson.message, ToastAndroid.LONG);
+                
             }
         } catch (error) {
             console.error(error);

@@ -50,7 +50,8 @@ const Question = React.memo(({ navigation }) => {
     // timer
     let timeGet = selectedCatInfo.categoryTime.split(":")
     let totalTime = parseInt(timeGet[0]) * 60 + parseInt(timeGet[1])
-    let questionTime = totalTime / getQuesState.result.length; //in seconds
+    let questionTime = 2
+    //totalTime / getQuesState.result.length; //in seconds
 
     const stopTime = () => clearInterval(intervalRef.current)
 
@@ -67,7 +68,9 @@ const Question = React.memo(({ navigation }) => {
 
             if (timer-- === 0) {
                 clearInterval(intervalRef.current)
-            } else if (minutes < 1 && seconds < 1) {
+            }
+            //else 
+            if (minutes < 1 && seconds < 1) {
                 if (count < getQuesState.result.length - 1) {
                     setCount(++count)
                     setcurQ({ data: getQuestions[count] })
@@ -99,13 +102,11 @@ const Question = React.memo(({ navigation }) => {
                 }
             }
 
-
             setMinutes(minutes)
             setSeconds(seconds)
         }, 1000);
 
     };
-
 
     let [count, setCount] = useState(0)
     let [curQ, setcurQ] = useState({
@@ -148,6 +149,7 @@ const Question = React.memo(({ navigation }) => {
             <ScrollView showsVerticalScrollIndicator={false}>
 
                 <View style={styles.container}>
+
                     <View style={styles.headerContainer}>
                         <View style={styles.toolbar}>
                             <TouchableOpacity onPress={navigation.openDrawer}>

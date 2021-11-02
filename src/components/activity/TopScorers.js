@@ -7,22 +7,24 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { funcGETScorers123, funcGETScorers4567 } from '../../redux/actions/gameAction';
 
+import Loader from '../Loader';
+
 const TopScorers = ({ navigation }) => {
 
     const dispatch = useDispatch();
     let getUserState, authToken, topScores123Info, topScores4567Info;
 
-    // useEffect(() => {
-        getUserState = useSelector(({ userState }) => userState.infoUser);
-        authToken = getUserState.token;
+    getUserState = useSelector(({ userState }) => userState.infoUser);
+    authToken = getUserState.token;
+    topScores123Info = useSelector(({ scoreState }) => { return scoreState.infoTopScores123 });
+    topScores4567Info = useSelector(({ scoreState }) => { return scoreState.infoTopScores4567 });
+
+    useEffect(() => {
 
         dispatch(funcGETScorers123(authToken))
-        topScores123Info = useSelector(({ scoreState }) => { return scoreState.infoTopScores123 });
-
         dispatch(funcGETScorers4567(authToken))
-        topScores4567Info = useSelector(({ scoreState }) => { return scoreState.infoTopScores4567 });
 
-    // }, [])
+    }, [])
 
     return (
         <LinearGradient colors={['#b81592', '#23044e', '#000036']} style={{ height: '100%' }} >
@@ -76,7 +78,7 @@ const TopScorers = ({ navigation }) => {
                                             })
                                         )
                                         :
-                                        (null)
+                                        <Loader loading={true} />
                                 }
 
                             </View>
@@ -109,7 +111,7 @@ const TopScorers = ({ navigation }) => {
                                             })
                                         )
                                         :
-                                        (null)
+                                        <Loader loading={true} />
                                 }
 
 

@@ -1,5 +1,5 @@
 
-export const IP = "172.15.130.77"
+export const IP = "172.15.130.29"
 
 export const LOG_IN_USER = 'LOG_IN_USER';
 export const LOG_OUT_USER = 'LOG_OUT_USER';
@@ -16,3 +16,6 @@ export const CAT_ID = "CAT_ID";
 export const OPT_ID = "OPT_ID"
 
 export const USER_CATEGORY_SCORE = "USER_CATEGORY_SCORE"
+
+export const START_LOADING = "START_LOADING"
+export const END_LOADING = "END_LOADING"

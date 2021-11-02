@@ -79,14 +79,14 @@ const funcGETScorers123 = (Authtoken) => {
         try {
             let res = await axios.get(api, { headers: { "Authorization": `Bearer ${Authtoken}` } });
             console.log(res.data[0])
-            // if (res.data[0].status) {
-            //     dispatch({
-            //         type: GET_SCORES123,
-            //         payload: res.data[0].result
-            //     });
-            // } else {
-            //     ToastAndroid.show(res.data[0].msg, ToastAndroid.LONG)
-            // }
+            if (res.data[0].status) {
+                dispatch({
+                    type: GET_SCORES123,
+                    payload: res.data[0].result
+                });
+            } else {
+                ToastAndroid.show(res.data[0].msg, ToastAndroid.LONG)
+            }
         } catch (error) {
             console.error(error);
         }
@@ -101,14 +101,14 @@ const funcGETScorers4567 = (Authtoken) => {
         try {
             let res = await axios.get(api, { headers: { "Authorization": `Bearer ${Authtoken}` } });
             console.log(res.data[0])
-            // if (res.data[0]) {
-            //     dispatch({
-            //         type: GET_SCORES4567,
-            //         payload: res.data[0].result
-            //     });
-            // } else {
-            //     ToastAndroid.show(res.data[0].msg, ToastAndroid.LONG)
-            // }
+            if (res.data[0]) {
+                dispatch({
+                    type: GET_SCORES4567,
+                    payload: res.data[0].result
+                });
+            } else {
+                ToastAndroid.show(res.data[0].msg, ToastAndroid.LONG)
+            }
         } catch (error) {
             console.error(error);
         }
