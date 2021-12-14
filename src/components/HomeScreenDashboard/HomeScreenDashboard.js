@@ -100,7 +100,6 @@ const HomeScreenDashboard = ({ navigation }) => {
                                             source={require('../../assets/instruction2.png')}
                                             style={styles.btnNextBackground} />
                                           <View
-
                                             style={styles.btnNextTextContainer}>
                                             <Text style={styles.btnNextText}>NEXT</Text>
                                           </View>

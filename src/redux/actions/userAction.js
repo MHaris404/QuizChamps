@@ -8,7 +8,7 @@ import {
 const LoginUser = (state) => {
     return async (dispatch) => {
 
-        const api = "http://" + IP + ":5000/endpoint/v1/login";
+        const api = IP + "endpoint/v1/login";
 
         try {
             let response = await axios.post(api, { username: state.email, password: state.password }, { withCredentials: true });
@@ -36,8 +36,8 @@ const LogoutUser = () => {
     return async (dispatch) => {
 
         ToastAndroid.show("Logging Out", ToastAndroid.SHORT);
-        const api = "http://" + IP + ":5000/endpoint/v1/isloggedin";
 
+        // const api = IP + "endpoint/v1/isloggedin";
         // try {
         //     const response = await fetch(api);
         //     const responseJson = await response.json();
@@ -45,7 +45,7 @@ const LogoutUser = () => {
         //     if (responseJson.status) {
 
         {
-            let api = "http://" + IP + ":5000/endpoint/v1/logout";
+            let api = IP + "endpoint/v1/logout";
             try {
                 fetch(api, {
                     method: 'POST',

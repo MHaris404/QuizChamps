@@ -97,7 +97,7 @@ const Question = React.memo(({ navigation }) => {
                     // stopTime()
 
                     dispatch(funcPostScoreCat(authToken, getUserState.details.id, selectedCatInfo.id, selOpt, selectedCatInfo.categoryName))
-                    navigation.navigate("Achievements")
+                    // navigation.navigate("Achievements")
                 }
             }
 

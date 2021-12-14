@@ -1,5 +1,6 @@
 
-export const IP = "172.15.130.29"
+export const IP = "https://quiz-champs.herokuapp.com/"
+// "172.15.129.205"
 
 export const LOG_IN_USER = 'LOG_IN_USER';
 export const LOG_OUT_USER = 'LOG_OUT_USER';

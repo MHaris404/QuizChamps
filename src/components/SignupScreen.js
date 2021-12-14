@@ -304,7 +304,7 @@ const SignupScreen = ({ navigation }) => {
   async function getAPI() {
 
     setModalVisible(!modalVisible)
-    let api = `http://${IP}:5000/endpoint/v1/signup`;
+    let api = `${IP}endpoint/v1/signup`;
     try {
       fetch(api, {
         method: 'POST',

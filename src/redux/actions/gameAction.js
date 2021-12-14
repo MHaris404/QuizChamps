@@ -8,7 +8,7 @@ import {
 const funcGETCat = (Authtoken) => {
     return async (dispatch) => {
 
-        const api = "http://" + IP + ":5000/endpoint/v1/get/category/all";
+        const api = IP + "endpoint/v1/get/category/all";
 
         try {
             let catResponse = await axios.get(api, { headers: { "Authorization": `Bearer ${Authtoken}` } });
@@ -31,7 +31,7 @@ const funcGETCat = (Authtoken) => {
 const funcGETQues = (Authtoken, catID) => {
     return async (dispatch) => {
 
-        const api = `http://${IP}:5000/endpoint/v1/get/question?categoryid=${catID}`;
+        const api = `${IP}endpoint/v1/get/question?categoryid=${catID}`;
 
         try {
             let quesResponse = await axios.get(api, { headers: { "Authorization": `Bearer ${Authtoken}` } });
@@ -54,7 +54,7 @@ const funcGETQues = (Authtoken, catID) => {
 const funcGETScorebyUserid = (Authtoken, userid) => {
     return async (dispatch) => {
 
-        const api = `http://${IP}:5000/endpoint/v1/get/score?userid=${userid}`;
+        const api = `${IP}endpoint/v1/get/score?userid=${userid}`;
         try {
             let top3scoresRes = await axios.get(api, { headers: { "Authorization": `Bearer ${Authtoken}` } });
             if (top3scoresRes.data[0].status) {
@@ -75,7 +75,7 @@ const funcGETScorebyUserid = (Authtoken, userid) => {
 const funcGETScorers123 = (Authtoken) => {
     return async (dispatch) => {
 
-        const api = `http://${IP}:5000/endpoint/v1/get/getScores123`;
+        const api = `${IP}endpoint/v1/get/getScores123`;
         try {
             let res = await axios.get(api, { headers: { "Authorization": `Bearer ${Authtoken}` } });
             console.log(res.data[0])
@@ -97,7 +97,7 @@ const funcGETScorers123 = (Authtoken) => {
 const funcGETScorers4567 = (Authtoken) => {
     return async (dispatch) => {
 
-        const api = `http://${IP}:5000/endpoint/v1/get/getScores4567`;
+        const api = `${IP}endpoint/v1/get/getScores4567`;
         try {
             let res = await axios.get(api, { headers: { "Authorization": `Bearer ${Authtoken}` } });
             console.log(res.data[0])
